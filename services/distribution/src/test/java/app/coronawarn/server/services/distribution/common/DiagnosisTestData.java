@@ -3,6 +3,7 @@
 package app.coronawarn.server.services.distribution.common;
 
 import app.coronawarn.server.common.persistence.domain.DiagnosisKey;
+import app.coronawarn.server.common.protocols.external.exposurenotification.ReportType;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -56,6 +57,7 @@ public final class DiagnosisTestData {
             DiagnosisKey.builder().withKeyData(randomKeyData())
                 .withRollingStartIntervalNumber(600)
                 .withTransmissionRiskLevel(5).withSubmissionTimestamp(timestamp)
+                .withReportType(ReportType.CONFIRMED_CLINICAL_DIAGNOSIS)
                 .build())
         .collect(Collectors.toList());
   }
