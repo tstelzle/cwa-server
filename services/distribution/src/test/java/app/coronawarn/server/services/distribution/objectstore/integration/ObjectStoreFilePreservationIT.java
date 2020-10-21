@@ -22,8 +22,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,6 +46,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DirtiesContext
 @ActiveProfiles("integration-test")
 @Tag("s3-integration")
+@Disabled
 class ObjectStoreFilePreservationIT {
 
   @Autowired

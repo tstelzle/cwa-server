@@ -25,6 +25,7 @@ class UploadTest {
 
   @Test
   void shouldGenerateTestKeys() {
+
     verify(spyFederationClient, times(2)).postBatchUpload(any());
   }
 
