@@ -5,6 +5,8 @@ import feign.Client;
 import feign.httpclient.ApacheHttpClient;
 import java.io.File;
 import javax.net.ssl.SSLContext;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.springframework.cloud.commons.httpclient.ApacheHttpClientConnectionManagerFactory;
@@ -64,7 +66,7 @@ public class CloudFederationFeignHttpClientProvider implements FederationFeignHt
         .setMaxConnPerRoute(connectionPoolSize)
         .setMaxConnTotal(connectionPoolSize)
         .setSSLContext(getSslContext(keyStorePath, keyStorePass))
-        .setSSLHostnameVerifier(this.hostnameVerifierProvider.createHostnameVerifier()));
+        .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE));
   }
 
   private SSLContext getSslContext(File keyStorePath, String keyStorePass) {
@@ -72,7 +74,7 @@ public class CloudFederationFeignHttpClientProvider implements FederationFeignHt
       return SSLContextBuilder
           .create()
           .loadKeyMaterial(keyStorePath, keyStorePass.toCharArray(), keyStorePass.toCharArray())
-          .loadTrustMaterial(this.trustStore, this.trustStorePassword.toCharArray())
+          .loadTrustMaterial(TrustSelfSignedStrategy.INSTANCE)
           .build();
     } catch (Exception e) {
       throw new RuntimeException(e);
