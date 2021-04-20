@@ -141,6 +141,9 @@ public class Helpers {
               .withRollingPeriod(rollingPeriod)
               .withVisitedCountries(Set.of("DE"))
               .withCountryCode("DE")
+              .withReportType(ReportType.SELF_REPORT)
+              .withDaysSinceOnsetOfSymptoms(12)
+              .withConsentToFederation(true)
               .build();
         })
         .collect(Collectors.toList()
